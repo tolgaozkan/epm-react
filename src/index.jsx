@@ -1,17 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import FunctionalComponent from './functional';
-import ClassComponent from './class';
-import ClassPureComponent from './class.pure';
-// import CreateClassComponent from './create-class';
+import FunctionalComponent from './functional/FunctionalComponent';
+import ClassComponent from './class/ClassComponent';
+import ClassPureComponent from './class-pure/ClassPureComponent';
 
-const styles = {
-  fontFamily: 'sans-serif',
-  textAlign: 'center',
-};
+import style from './index.scss';
 
 const Functional = () => (
-  <div style={styles}>
+  <div className="functional">
     <FunctionalComponent name="Functional Component" />
   </div>
 );
@@ -24,5 +20,3 @@ render(title, document.getElementById('createElement'));
 render(<ClassComponent />, document.getElementById('classComponent'));
 
 render(<ClassPureComponent />, document.getElementById('classPureComponent'));
-
-// render(CreateClassComponent, document.getElementById('createClass'));
