@@ -1,8 +1,9 @@
-var webpack = require('webpack');
+const webpack = require('webpack');
 const { resolve, join } = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var APP_DIR = resolve(__dirname, './src');
+const APP_DIR = resolve(__dirname, './src');
 
 module.exports = function (env, options) {
   const isProduction = options.mode === "production";
@@ -10,13 +11,25 @@ module.exports = function (env, options) {
   const config = {
     context: join(__dirname, "src"),
     entry: "./",
-    mode: isProduction ? "production" : "development",
+    // mode: isProduction ? "production" : "development",
     devtool: isProduction ? "none" : "source-map",
+
+    output: {
+      filename: '[name].[hash].js',
+      path: resolve(__dirname, "dist"),
+    },
 
     module: {
       rules: [
         {
-          test: /(\.css|.scss)$/,
+          test: /\.scss$/,
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'sass-loader']
+          })
+        },
+        {
+          test: /(\.css)$/,
           use: [{
             loader: "style-loader" // creates style nodes from JS strings
           }, {
@@ -51,7 +64,12 @@ module.exports = function (env, options) {
         title: "EPM-REACT",
         hash: true,
         template: resolve(__dirname, "./index.html")
-      })
+      }),
+      new ExtractTextPlugin('style.css')
+      //if you want to pass in options, you can do so:
+      //new ExtractTextPlugin({
+      //  filename: 'style.css'
+      //})
     ],
 
     resolve: {
