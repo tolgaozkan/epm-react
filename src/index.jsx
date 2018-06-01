@@ -1,22 +1,25 @@
+
 import React from 'react';
 import { render } from 'react-dom';
-import FunctionalComponent from './functional/FunctionalComponent';
-import ClassComponent from './class/ClassComponent';
-import ClassPureComponent from './class-pure/ClassPureComponent';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { createStore } from 'redux';
 
-import style from './index.scss';
+import './index.scss';
 
-const Functional = () => (
-  <div className="functional">
-    <FunctionalComponent name="Functional Component" />
-  </div>
+import App from './components/app/App';
+import ErrorBoundary from './components/error-boundary/ErrorBoundary';
+import MoviesReducer from './reducers/Movies';
+
+const store = createStore(MoviesReducer);
+
+render(
+  <ErrorBoundary>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App store={store} />
+      </BrowserRouter>
+    </Provider>
+  </ErrorBoundary>,
+  document.getElementById('root'),
 );
-
-render(<Functional />, document.getElementById('functional'));
-
-const title = React.createElement('h1', {}, 'By React.createElement');
-render(title, document.getElementById('createElement'));
-
-render(<ClassComponent />, document.getElementById('classComponent'));
-
-render(<ClassPureComponent />, document.getElementById('classPureComponent'));
