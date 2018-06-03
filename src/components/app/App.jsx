@@ -1,12 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import Header from '../header/Header';
 import Container from '../container/Container';
-import { getState } from 'redux';
+import Header from '../header/Header';
 
 export default class App extends React.Component {
   render() {
-    const store = this.props.store;
+    const { store } = this.props;
 
     return (
       <div>
@@ -16,3 +16,7 @@ export default class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+};

@@ -4,20 +4,18 @@ import { shallow } from 'enzyme';
 import Container from './Container';
 
 import Search from '../search/Search';
-import Tool from '../tool/Tool';
-import MovieListContainer from '../movie-list-container/MovieListContainer';
+import { Tool } from '../tool/Tool';
 
 it('renders search', () => {
-  const result = shallow(<Container />).contains(<Search />);
+  const ui = {};
+  const store = { ui };
+  const result = shallow(<Container store={store} />).contains(<Search />);
   expect(result).toBeTruthy();
 });
 
 it('renders tool', () => {
-  const result = shallow(<Container />).contains(<Tool />);
-  expect(result).toBeTruthy();
-});
-
-it('renders movie list container', () => {
-  const result = shallow(<Container />).contains(<MovieListContainer />);
+  const ui = {};
+  const store = { ui };
+  const result = shallow(<Container store={store} />).contains(<Tool />);
   expect(result).toBeTruthy();
 });

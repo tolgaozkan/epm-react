@@ -1,34 +1,29 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+
 import MovieList from '../movie-list/MovieList';
 
 require('./style.scss');
 
-export default class MovieListContainer extends React.Component {
-
-  componentDidMount() {
-    if (fetch) {
-      fetch('http://react-cdp-api.herokuapp.com/movies')
-        .then(res => res.json())
-        .then((result) => {
-          this.setState({
-            movies: result.data,
-          });
-        });
-    }
-  }
-
+export class MovieListContainer extends React.PureComponent {
   render() {
-    let movieListContainer;
-
-    if (this.state && this.state.movies) {
-      movieListContainer = <MovieList movies={this.state.movies} />;
-    }
-
     return (
       <div className="movie-list-container">
-        {movieListContainer}
+        <MovieList movies={this.props.movies} />
       </div>
     );
   }
 }
 
+MovieListContainer.propTypes = {
+  movies: PropTypes.array.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    movies: state.movies,
+  };
+}
+
+export default connect(mapStateToProps)(MovieListContainer);

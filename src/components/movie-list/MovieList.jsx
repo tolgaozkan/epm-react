@@ -1,23 +1,34 @@
+import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 require('./style.scss');
 
-export default class MovieList extends React.Component {
+class MovieList extends React.PureComponent {
   render() {
-    let movies;
+    const movies = this.props.movies.map((movie, i) => (
+      <Link key={i} to={`/film/${movie.id}`}>
+        <div className="movie">
+          <p className="movie-name">Name: {movie.title} </p>
+          <p className="movie-genre">Genres: {movie.genres.join(', ')}</p>
+        </div>
+      </Link>));
 
-    if (this.props && this.props.movies) {
-      console.log("this.props", this.props);
-      movies = this.props.movies.map((movie, i) => (
-        <div className="movie" key={i}>
-            <p className="movie-name">Name: {movie.title}</p>
-            <p className="movie-genre">Genre: {movie.genres.join(', ')}</p>
-          </div>
-      ));
-    }
     return (
       <div className="movies-container">{movies}</div>
     );
   }
 }
 
+MovieList.propTypes = {
+  movies: PropTypes.array.isRequired,
+};
+
+function mapStateToProps(state) {
+  return {
+    movies: state.movies,
+  };
+}
+
+export default connect(mapStateToProps)(MovieList);

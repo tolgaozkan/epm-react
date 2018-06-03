@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { create as render } from 'react-test-renderer';
 
-import { MovieListContainer } from './MovieListContainer';
+import { MovieDetails } from './MovieDetails';
 
-it('renders movie list container', () => {
+it('renders movie details', () => {
   const movies = [
     {
       id: 1,
@@ -20,7 +20,13 @@ it('renders movie list container', () => {
     },
   ];
 
-  const result = render(<MovieListContainer movies={movies} />);
+  const match = {
+    params: {
+      id: '1',
+    },
+  };
+
+  const result = render(<MovieDetails movies={movies} match={match} />);
   const snap = result.toJSON();
 
   expect(snap).toMatchSnapshot();
