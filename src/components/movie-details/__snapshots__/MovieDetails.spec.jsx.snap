@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders movie details 1`] = `
+<div
+  className="movie-detail-container"
+>
+  <div
+    className="movie"
+  >
+    <p
+      className="movie-name"
+    >
+      Name: 
+      Guardians of the Galaxy Vol. 
+    </p>
+    <p
+      className="movie-genre"
+    >
+      Genres: 
+      Action, Adventure, Science Fiction
+    </p>
+  </div>
+</div>
+`;

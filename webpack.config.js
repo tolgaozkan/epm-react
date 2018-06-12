@@ -16,6 +16,7 @@ module.exports = function (env, options) {
     output: {
       filename: '[name].[hash].js',
       path: resolve(__dirname, 'dist'),
+      publicPath: '/',
     },
 
     module: {
@@ -48,7 +49,7 @@ module.exports = function (env, options) {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-              presets: ['react', 'es2015'], // Transpiles JSX and ES6
+              presets: ['react', 'stage-3', 'es2015'], // Transpiles JSX and ES6
             },
           }],
         },
@@ -74,6 +75,7 @@ module.exports = function (env, options) {
 
     devServer: {
       contentBase: './dist',
+      historyApiFallback: true,
     },
   };
 

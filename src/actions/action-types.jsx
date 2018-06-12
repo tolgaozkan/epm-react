@@ -1,0 +1,3 @@
+export const GET_MOVIES_SUCCESS = 'GET_MOVIES_SUCCESS';
+export const SORT_MOVIES = 'SORT_MOVIES';
+export const SEARCH_MOVIES = 'SEARCH_MOVIES';

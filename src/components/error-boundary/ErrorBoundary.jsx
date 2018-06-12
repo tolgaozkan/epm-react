@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class ErrorBoundary extends React.Component {
@@ -18,6 +19,10 @@ export default class ErrorBoundary extends React.Component {
       // You can render any custom fallback UI
       return <h1>Something went wrong.</h1>;
     }
-    return <div />;
+    return this.props.children;
   }
 }
+
+ErrorBoundary.propTypes = {
+  children: PropTypes.object.isRequired,
+};
