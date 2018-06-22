@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 import MovieList from '../movie-list/MovieList';
 
-require('./style.scss');
+import styles from './style.css';
 
 export class MovieListContainer extends React.PureComponent {
   render() {
     return (
-      <div className="movie-list-container">
+      <div className={styles['movie-list-container']}>
         <MovieList movies={this.props.movies} />
       </div>
     );

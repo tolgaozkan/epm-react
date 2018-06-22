@@ -21,7 +21,7 @@
 // };
 
 export default {
-  movies: [ ],
+  movies: [],
   originalMovies: [],
   ui: {
     sort: 'title',

@@ -1,46 +1,41 @@
+import 'babel-polyfill';
+import 'isomorphic-fetch';
 
-import { connectRouter, ConnectedRouter, routerMiddleware } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
+import PropTypes from 'prop-types';
 import React from 'react';
-import { render } from 'react-dom';
+import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { BrowserRouter } from 'react-router-dom';
 
 import { loadMovies } from './actions/moviesActions';
 import App from './components/app/App';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import initialState from './initial-state';
 import MoviesReducer from './reducers/Movies';
 
-import './index.scss';
-
-const history = createBrowserHistory();
-
-/* eslint-disable no-underscore-dangle */
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-/* eslint-enable */
-
-const store = createStore(
-  connectRouter(history)(MoviesReducer),
-  initialState,
-  composeEnhancers(applyMiddleware(
-    routerMiddleware(history),
-    thunk,
-  )),
-);
+const store = createStore(MoviesReducer, applyMiddleware(thunk));
 store.dispatch(loadMovies());
 
-render(
+const Index = ({ Router, location, context }) => (
   <ErrorBoundary>
-    <BrowserRouter>
+    <Router location={location} context={context}>
       <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App store={store} />
-        </ConnectedRouter>
+        <App store={store} />
       </Provider>
-    </BrowserRouter>
-  </ErrorBoundary>,
-  document.getElementById('root'),
+    </Router>
+  </ErrorBoundary>
 );
+
+Index.propTypes = {
+  Router: PropTypes.func.isRequired,
+  location: PropTypes.string,
+  context: PropTypes.shape({
+    url: PropTypes.string,
+  }),
+};
+Index.defaultProps = {
+  location: null,
+  context: null,
+};
+
+export default hot(module)(Index);
