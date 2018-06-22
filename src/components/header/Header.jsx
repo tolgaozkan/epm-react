@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-require('./style.scss');
+import styles from './style.css';
 
 export default class Header extends React.PureComponent {
   render() {
     return (
       <Link to="/">
-        <header className="header">
-          <span className="title">NETFLIX ROULETTE</span>
+        <header className={styles.header}>
+          <span className={styles.title}>NETFLIX ROULETTE</span>
         </header>
       </Link>
     );

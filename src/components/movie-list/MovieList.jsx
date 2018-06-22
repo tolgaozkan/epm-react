@@ -3,20 +3,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-require('./style.scss');
+import styles from './style.css';
 
 class MovieList extends React.PureComponent {
   render() {
     const movies = this.props.movies.map((movie, i) => (
       <Link key={i} to={`/film/${movie.id}`}>
-        <div className="movie">
-          <p className="movie-name">Name: {movie.title} </p>
-          <p className="movie-genre">Genres: {movie.genres.join(', ')}</p>
+        <div className={styles.movie}>
+          <p>Name: {movie.title} </p>
+          <p>Genres: {movie.genres.join(', ')}</p>
         </div>
       </Link>));
 
     return (
-      <div className="movies-container">{movies}</div>
+      <div className={styles['movies-container']}>{movies}</div>
     );
   }
 }

@@ -11,17 +11,15 @@
     align-items: center;
     -webkit-justify-content: center;
     justify-content: center;
-
-    .movie {
-		border: 1px solid black;
-		padding: 35px 10px;
-		margin: 40px;
-		font-size: 12px;
-		position: relative;
-		width: 200px;
-		background-color: floralwhite;
-		border-radius: 5px;
-	}
 }
 
-
+.movie {
+    border: 1px solid black;
+    padding: 35px 10px;
+    margin: 40px;
+    font-size: 12px;
+    position: relative;
+    width: 200px;
+    background-color: floralwhite;
+    border-radius: 5px;
+}

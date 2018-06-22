@@ -1,6 +1,7 @@
 import * as types from '../actions/action-types';
+import initialState from '../initial-state';
 
-export default function MoviesReducer(state, action) {
+export default function MoviesReducer(state = initialState, action) {
   switch (action.type) {
     case types.GET_MOVIES_SUCCESS:
       return { ...state, movies: [...action.movies.data], originalMovies: [...action.movies.data] };

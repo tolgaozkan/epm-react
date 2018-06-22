@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { searchMovies } from '../../actions/moviesActions';
 
-require('./style.scss');
+import styles from './style.css';
 
 class Search extends React.Component {
   componentWillMount() {
@@ -35,8 +35,12 @@ class Search extends React.Component {
       classNames[ui.searchBy] += ' active';
     }
 
+    const formGroupClass = `form-group ${styles['search-panel']}`;
+    const btnGrpClass = `btn-group-toggle ${styles['btn-group']}`;
+    const searchClass = `btn btn-primary btn-sm ${styles.search}`;
+
     return (
-      <div className="form-group search-panel">
+      <div className={formGroupClass}>
         <input
           type="text"
           className="form-control"
@@ -45,7 +49,7 @@ class Search extends React.Component {
           onChange={evt => this.updateInputValue(evt)}
         />
         <p>Find by:</p>
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
+        <div className={btnGrpClass} data-toggle="buttons">
           <button
             className={classNames.title}
             type="button"
@@ -63,7 +67,7 @@ class Search extends React.Component {
         </div>
         <button
           type="button"
-          className="btn btn-primary btn-sm search"
+          className={searchClass}
           onClick={() => this.searchClick()}
         >Search
         </button>

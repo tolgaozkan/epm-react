@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { sortMovies } from '../../actions/moviesActions';
 
-require('./style.scss');
+import styles from './style.css';
 
 export class Tool extends React.PureComponent {
   componentWillMount() {
@@ -27,10 +27,12 @@ export class Tool extends React.PureComponent {
       classNames[ui.sort] += ' active';
     }
 
+    const formGroupClass = `form-group ${styles['info-bar']}`;
+
     return (
-      <div className="form-group info-bar">
+      <div className={formGroupClass}>
         <p className="movie-counter">{(this.props && this.props.movies && this.props.movies.length) || 0} movies</p>
-        <div className="sort-movie">
+        <div className={styles['sort-movie']}>
           <p>Sort by:</p>
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             <button

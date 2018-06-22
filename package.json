@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "connected-react-router": "^4.3.0",
     "create-react-class": "^15.6.3",
     "express": "^4.16.3",
@@ -10,6 +11,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-hot-loader": "^4.3.3",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -19,10 +21,9 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "npm run build && npm run dev",
+    "start": "cross-env NODE_ENV=development  node ./server",
     "start:dev": "webpack-dev-server --mode development --open",
-    "dev": "node app.js",
-    "build": "webpack --progress --colors",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack",
     "test": "./node_modules/.bin/jest --coverage"
   },
   "devDependencies": {
@@ -32,6 +33,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
@@ -47,12 +50,17 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
     "jest-enzyme": "^6.0.0",
+    "mini-css-extract-plugin": "^0.4.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.4",
+    "webpack-hot-middleware": "^2.22.2",
+    "webpack-hot-server-middleware": "^0.5.0",
+    "webpack-merge": "^4.1.3",
+    "webpack-node-externals": "^1.7.2"
   },
   "jest": {
     "setupFiles": [
