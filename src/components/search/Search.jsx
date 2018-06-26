@@ -8,20 +8,24 @@ import styles from './style.css';
 
 class Search extends React.Component {
   componentWillMount() {
-    this.setState({ ui: this.props.ui });
+    const { ui } = this.props;
+    this.setState({ ui });
   }
 
   searchByClick(searchBy) {
-    this.setState({ ui: { ...this.state.ui, searchBy } });
+    const { ui } = this.state;
+    this.setState({ ui: { ...ui, searchBy } });
   }
 
   searchClick() {
     const { ui } = this.state;
-    this.props.store.dispatch(searchMovies({ search: ui.search, searchBy: ui.searchBy }));
+    const { store } = this.props;
+    store.dispatch(searchMovies({ search: ui.search, searchBy: ui.searchBy }));
   }
 
   updateInputValue(evt) {
-    this.setState({ ui: { ...this.state.ui, search: evt.target.value } });
+    const { ui } = this.state;
+    this.setState({ ui: { ...ui, search: evt.target.value } });
   }
 
   render() {
@@ -39,16 +43,20 @@ class Search extends React.Component {
     const btnGrpClass = `btn-group-toggle ${styles['btn-group']}`;
     const searchClass = `btn btn-primary btn-sm ${styles.search}`;
 
+    const { search } = ui;
+
     return (
       <div className={formGroupClass}>
         <input
           type="text"
           className="form-control"
           placeholder="Find your movie"
-          value={this.state.ui.search}
+          value={search}
           onChange={evt => this.updateInputValue(evt)}
         />
-        <p>Find by:</p>
+        <p>
+          Find by:
+        </p>
         <div className={btnGrpClass} data-toggle="buttons">
           <button
             className={classNames.title}
@@ -69,15 +77,16 @@ class Search extends React.Component {
           type="button"
           className={searchClass}
           onClick={() => this.searchClick()}
-        >Search
+        >
+          Search
         </button>
       </div>);
   }
 }
 
 Search.propTypes = {
-  ui: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  ui: PropTypes.shape({}).isRequired,
+  store: PropTypes.shape({}).isRequired,
 };
 
 function mapStateToProps(state) {

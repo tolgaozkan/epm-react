@@ -32,8 +32,9 @@ export default function serverRenderer() {
       <Index location={req.url} context={context} Router={StaticRouter} />
     );
     const htmlString = renderToString(index);
+    const { url } = context;
 
-    if (context.url) {
+    if (url) {
       res.writeHead(302, {
         Location: context.url,
       });

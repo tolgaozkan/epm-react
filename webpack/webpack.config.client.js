@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const common = require('./webpack.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const common = require('./webpack.config');
 
 const isDevMod = process.env.NODE_ENV === 'development';
 

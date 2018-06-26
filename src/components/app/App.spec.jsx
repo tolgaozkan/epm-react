@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import App from '../app/App';
+import App from './App';
 import Header from '../header/Header';
 import Container from '../container/Container';
 

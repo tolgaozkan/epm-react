@@ -8,7 +8,9 @@ export default class Header extends React.PureComponent {
     return (
       <Link to="/">
         <header className={styles.header}>
-          <span className={styles.title}>NETFLIX ROULETTE</span>
+          <span className={styles.title}>
+NETFLIX ROULETTE
+          </span>
         </header>
       </Link>
     );

@@ -5,4 +5,3 @@ export default class ErrorPage extends React.Component {
     return 'This page is not available.';
   }
 }
-

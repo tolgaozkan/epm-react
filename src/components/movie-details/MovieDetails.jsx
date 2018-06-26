@@ -6,14 +6,20 @@ import styles from './style.css';
 
 export class MovieDetails extends React.PureComponent {
   render() {
-    const { movies } = this.props;
-    const movie = movies.find(m => m.id === parseInt(this.props.match.params.id, 10));
+    const { movies, match } = this.props;
+    const movie = movies.find(m => m.id === parseInt(match.params.id, 10));
 
     return movie ? (
       <div className={styles['movie-detail-container']}>
         <div className={styles.movie}>
-          <p>Name: {movie.title}</p>
-          <p>Genres: {movie.genres.join(', ')}</p>
+          <p>
+            Name:
+            {movie.title}
+          </p>
+          <p>
+            Genres:
+            {movie.genres.join(', ')}
+          </p>
         </div>
       </div>
     ) : (<div />);
@@ -21,8 +27,8 @@ export class MovieDetails extends React.PureComponent {
 }
 
 MovieDetails.propTypes = {
-  movies: PropTypes.array.isRequired,
-  match: PropTypes.object.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  match: PropTypes.shape({}).isRequired,
 };
 
 function mapStateToProps(state) {

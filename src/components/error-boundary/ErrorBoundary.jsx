@@ -11,18 +11,25 @@ export default class ErrorBoundary extends React.Component {
     // Display fallback UI
     this.setState({ hasError: true });
 
+    // eslint-disable-next-line no-console
     console.error(error, info);
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    const { children } = this.props;
+    if (hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      return (
+        <h1>
+          Something went wrong.
+        </h1>
+      );
     }
-    return this.props.children;
+    return children;
   }
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.shape({}).isRequired,
 };
