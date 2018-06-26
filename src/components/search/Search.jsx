@@ -57,29 +57,31 @@ class Search extends React.Component {
         <p>
           Find by:
         </p>
-        <div className={btnGrpClass} data-toggle="buttons">
+        <div className={styles['find-by-actions']}>
+          <div className={btnGrpClass} data-toggle="buttons">
+            <button
+              className={classNames.title}
+              type="button"
+              onClick={() => this.searchByClick('title')}
+            >
+              Title
+            </button>
+            <button
+              className={classNames.genre}
+              type="button"
+              onClick={() => this.searchByClick('genre')}
+            >
+              Genre
+            </button>
+          </div>
           <button
-            className={classNames.title}
             type="button"
-            onClick={() => this.searchByClick('title')}
+            className={searchClass}
+            onClick={() => this.searchClick()}
           >
-            Title
-          </button>
-          <button
-            className={classNames.genre}
-            type="button"
-            onClick={() => this.searchByClick('genre')}
-          >
-            Genre
+            Search
           </button>
         </div>
-        <button
-          type="button"
-          className={searchClass}
-          onClick={() => this.searchClick()}
-        >
-          Search
-        </button>
       </div>);
   }
 }
