@@ -1,7 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 
-export default class ErrorBoundary extends React.Component {
+type Props = {
+    children: any,
+};
+
+type State = {
+    hasError: any,
+};
+
+export default class ErrorBoundary extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -29,7 +36,3 @@ export default class ErrorBoundary extends React.Component {
     return children;
   }
 }
-
-ErrorBoundary.propTypes = {
-  children: PropTypes.shape({}).isRequired,
-};

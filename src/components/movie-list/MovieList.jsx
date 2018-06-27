@@ -1,11 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import styles from './style.css';
 
-class MovieList extends React.PureComponent {
+type Props = {
+  movies: any[],
+};
+
+class MovieList extends React.PureComponent<Props> {
   render() {
     let { movies } = this.props;
     movies = movies.map(movie => (
@@ -30,10 +33,6 @@ class MovieList extends React.PureComponent {
     );
   }
 }
-
-MovieList.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-};
 
 function mapStateToProps(state) {
   return {

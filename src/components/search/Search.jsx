@@ -1,12 +1,19 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { searchMovies } from '../../actions/moviesActions';
-
 import styles from './style.css';
 
-class Search extends React.Component {
+type Props = {
+  ui: any,
+  store: any,
+};
+
+type State = {
+  ui: any,
+};
+
+class Search extends React.Component<Props, State> {
   componentWillMount() {
     const { ui } = this.props;
     this.setState({ ui });
@@ -85,11 +92,6 @@ class Search extends React.Component {
       </div>);
   }
 }
-
-Search.propTypes = {
-  ui: PropTypes.shape({}).isRequired,
-  store: PropTypes.shape({}).isRequired,
-};
 
 function mapStateToProps(state) {
   return {

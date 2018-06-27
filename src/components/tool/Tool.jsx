@@ -1,12 +1,22 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import { sortMovies } from '../../actions/moviesActions';
-
 import styles from './style.css';
 
-export class Tool extends React.PureComponent {
+type Props = {
+  ui: any,
+  store: any,
+  movies: any[],
+};
+
+type State = {
+  ui: any,
+  movies: any[],
+};
+
+export class Tool extends React.PureComponent<Props, State> {
   componentWillMount() {
     const { ui } = this.props;
     this.setState({ ui });

@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 
 import styles from './style.css';
 
-export class MovieDetails extends React.PureComponent {
+type Props = {
+  movies: any[],
+  match: any,
+};
+
+export class MovieDetails extends React.PureComponent<Props> {
   render() {
     const { movies, match } = this.props;
     const movie = movies.find(m => m.id === parseInt(match.params.id, 10));
@@ -25,11 +29,6 @@ export class MovieDetails extends React.PureComponent {
     ) : (<div />);
   }
 }
-
-MovieDetails.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  match: PropTypes.shape({}).isRequired,
-};
 
 function mapStateToProps(state) {
   return {
