@@ -18,7 +18,7 @@ function renderHTML(html) {
         </head>
         <body>
             <div id="app">${html}</div>
-            <script src="js/main.js"></script>
+            <script src="/js/main.js"></script>
         </body>
         </html>
     `
