@@ -11,18 +11,20 @@ import styles from './style.css';
 
 export default class Container extends React.Component {
   render() {
+    const { user, row } = styles;
+    const { store } = this.props;
     return (
-      <div className={styles.user}>
+      <div className={user}>
 
-        <div className={styles.row}>
-          <Search store={this.props.store} />
+        <div className={row}>
+          <Search store={store} />
         </div>
 
-        <div className={styles.row}>
-          <Tool store={this.props.store} />
+        <div className={row}>
+          <Tool store={store} />
         </div>
 
-        <div className={styles.row}>
+        <div className={row}>
           <Switch>
             <Route exact path="/" component={MovieListContainer} />
             <Route path="/film/:id" component={MovieDetails} />
@@ -35,5 +37,5 @@ export default class Container extends React.Component {
 }
 
 Container.propTypes = {
-  store: PropTypes.object.isRequired,
+  store: PropTypes.shape({}).isRequired,
 };

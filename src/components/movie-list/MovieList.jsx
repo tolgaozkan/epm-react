@@ -7,22 +7,32 @@ import styles from './style.css';
 
 class MovieList extends React.PureComponent {
   render() {
-    const movies = this.props.movies.map((movie, i) => (
-      <Link key={i} to={`/film/${movie.id}`}>
+    let { movies } = this.props;
+    movies = movies.map(movie => (
+      <Link key={`/film/${movie.id}`} to={`/film/${movie.id}`}>
         <div className={styles.movie}>
-          <p>Name: {movie.title} </p>
-          <p>Genres: {movie.genres.join(', ')}</p>
+          <p>
+            Name:
+            {movie.title}
+            {' '}
+          </p>
+          <p>
+            Genres:
+            {movie.genres.join(', ')}
+          </p>
         </div>
       </Link>));
 
     return (
-      <div className={styles['movies-container']}>{movies}</div>
+      <div className={styles['movies-container']}>
+        {movies}
+      </div>
     );
   }
 }
 
 MovieList.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 function mapStateToProps(state) {

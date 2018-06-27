@@ -10,6 +10,10 @@ it('renders find option', () => {
 });
 
 it('renders search button', () => {
-  const result = shallow(<Search />).contains(<button type="button" className="btn btn-primary btn-sm search">Search</button>);
+  const result = shallow(<Search />).contains(
+    <button type="button" className="btn btn-primary btn-sm search">
+      Search
+    </button>,
+  );
   expect(result).toBeTruthy();
 });

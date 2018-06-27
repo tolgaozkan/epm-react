@@ -8,12 +8,15 @@ import styles from './style.css';
 
 export class Tool extends React.PureComponent {
   componentWillMount() {
-    this.setState({ ui: this.props.ui });
+    const { ui } = this.props;
+    this.setState({ ui });
   }
 
   sortClick(sort) {
-    this.setState({ ui: { ...this.state.ui, sort } });
-    this.props.store.dispatch(sortMovies(sort));
+    const { ui } = this.state;
+    const { store } = this.props;
+    this.setState({ ui: { ...ui, sort } });
+    store.dispatch(sortMovies(sort));
   }
 
   render() {
@@ -29,11 +32,19 @@ export class Tool extends React.PureComponent {
 
     const formGroupClass = `form-group ${styles['info-bar']}`;
 
+    const { movies } = this.props;
+
     return (
       <div className={formGroupClass}>
-        <p className="movie-counter">{(this.props && this.props.movies && this.props.movies.length) || 0} movies</p>
+        <p className="movie-counter">
+          {(this.props && movies && movies.length) || 0}
+          {' '}
+          movies
+        </p>
         <div className={styles['sort-movie']}>
-          <p>Sort by:</p>
+          <p>
+            Sort by:
+          </p>
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             <button
               className={classNames.title}
@@ -57,9 +68,9 @@ export class Tool extends React.PureComponent {
 }
 
 Tool.propTypes = {
-  ui: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
-  movies: PropTypes.array.isRequired,
+  ui: PropTypes.shape({}).isRequired,
+  store: PropTypes.shape({}).isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 function mapStateToProps(state) {

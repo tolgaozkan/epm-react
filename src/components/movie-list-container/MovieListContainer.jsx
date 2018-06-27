@@ -8,16 +8,17 @@ import styles from './style.css';
 
 export class MovieListContainer extends React.PureComponent {
   render() {
+    const { movies } = this.props;
     return (
       <div className={styles['movie-list-container']}>
-        <MovieList movies={this.props.movies} />
+        <MovieList movies={movies} />
       </div>
     );
   }
 }
 
 MovieListContainer.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 function mapStateToProps(state) {

@@ -17,6 +17,8 @@ export default class App extends React.Component {
   }
 }
 
+// history: React.PropTypes.shape({ foo: { bar: {} } });
+
 App.propTypes = {
-  store: PropTypes.object.isRequired,
+  store: PropTypes.shape({}).isRequired,
 };

@@ -18,7 +18,7 @@ function renderHTML(html) {
         </head>
         <body>
             <div id="app">${html}</div>
-            <script src="js/main.js"></script>
+            <script src="/js/main.js"></script>
         </body>
         </html>
     `
@@ -32,8 +32,9 @@ export default function serverRenderer() {
       <Index location={req.url} context={context} Router={StaticRouter} />
     );
     const htmlString = renderToString(index);
+    const { url } = context;
 
-    if (context.url) {
+    if (url) {
       res.writeHead(302, {
         Location: context.url,
       });

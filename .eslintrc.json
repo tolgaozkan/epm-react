@@ -1,10 +1,31 @@
 {
-    "extends": "airbnb",
-    "env": {
-        "browser": true,
-        "node": true
-    },
-    "globals": {
-        "document": false
-    }
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "globals": {
+    "document": false
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "import"
+  ],
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "indent": ["error", 2],
+    "import/no-named-as-default": 0
+  }
 }

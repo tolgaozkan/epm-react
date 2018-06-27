@@ -8,20 +8,24 @@ import styles from './style.css';
 
 class Search extends React.Component {
   componentWillMount() {
-    this.setState({ ui: this.props.ui });
+    const { ui } = this.props;
+    this.setState({ ui });
   }
 
   searchByClick(searchBy) {
-    this.setState({ ui: { ...this.state.ui, searchBy } });
+    const { ui } = this.state;
+    this.setState({ ui: { ...ui, searchBy } });
   }
 
   searchClick() {
     const { ui } = this.state;
-    this.props.store.dispatch(searchMovies({ search: ui.search, searchBy: ui.searchBy }));
+    const { store } = this.props;
+    store.dispatch(searchMovies({ search: ui.search, searchBy: ui.searchBy }));
   }
 
   updateInputValue(evt) {
-    this.setState({ ui: { ...this.state.ui, search: evt.target.value } });
+    const { ui } = this.state;
+    this.setState({ ui: { ...ui, search: evt.target.value } });
   }
 
   render() {
@@ -39,45 +43,52 @@ class Search extends React.Component {
     const btnGrpClass = `btn-group-toggle ${styles['btn-group']}`;
     const searchClass = `btn btn-primary btn-sm ${styles.search}`;
 
+    const { search } = ui;
+
     return (
       <div className={formGroupClass}>
         <input
           type="text"
           className="form-control"
           placeholder="Find your movie"
-          value={this.state.ui.search}
+          value={search}
           onChange={evt => this.updateInputValue(evt)}
         />
-        <p>Find by:</p>
-        <div className={btnGrpClass} data-toggle="buttons">
+        <p>
+          Find by:
+        </p>
+        <div className={styles['find-by-actions']}>
+          <div className={btnGrpClass} data-toggle="buttons">
+            <button
+              className={classNames.title}
+              type="button"
+              onClick={() => this.searchByClick('title')}
+            >
+              Title
+            </button>
+            <button
+              className={classNames.genre}
+              type="button"
+              onClick={() => this.searchByClick('genre')}
+            >
+              Genre
+            </button>
+          </div>
           <button
-            className={classNames.title}
             type="button"
-            onClick={() => this.searchByClick('title')}
+            className={searchClass}
+            onClick={() => this.searchClick()}
           >
-            Title
-          </button>
-          <button
-            className={classNames.genre}
-            type="button"
-            onClick={() => this.searchByClick('genre')}
-          >
-            Genre
+            Search
           </button>
         </div>
-        <button
-          type="button"
-          className={searchClass}
-          onClick={() => this.searchClick()}
-        >Search
-        </button>
       </div>);
   }
 }
 
 Search.propTypes = {
-  ui: PropTypes.object.isRequired,
-  store: PropTypes.object.isRequired,
+  ui: PropTypes.shape({}).isRequired,
+  store: PropTypes.shape({}).isRequired,
 };
 
 function mapStateToProps(state) {

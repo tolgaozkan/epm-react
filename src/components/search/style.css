@@ -22,6 +22,10 @@ input {
 }
 
 .search {
-	float: right;
 	width: 150px;
+}
+
+.find-by-actions{
+    display: flex;
+    justify-content: space-between;
 }
