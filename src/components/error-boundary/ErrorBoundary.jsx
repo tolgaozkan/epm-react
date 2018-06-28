@@ -5,7 +5,7 @@ type Props = {
 };
 
 type State = {
-    hasError: any,
+    hasError: boolean,
 };
 
 export default class ErrorBoundary extends React.Component<Props, State> {
