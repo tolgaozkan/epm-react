@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import MovieList from '../movie-list/MovieList';
 import styles from './style.css';
 
+import type { Movie } from '../movie-details/MovieDetails';
+
 type Props = {
-  movies: any[],
+  movies: Movie[],
 };
 
 export class MovieListContainer extends React.PureComponent<Props> {

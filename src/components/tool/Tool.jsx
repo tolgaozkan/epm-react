@@ -5,15 +5,17 @@ import { connect } from 'react-redux';
 import { sortMovies } from '../../actions/moviesActions';
 import styles from './style.css';
 
+import type { Movie } from '../movie-details/MovieDetails';
+
 type Props = {
   ui: any,
   store: any,
-  movies: any[],
+  movies: Movie[],
 };
 
 type State = {
   ui: any,
-  movies: any[],
+  movies: Movie[],
 };
 
 export class Tool extends React.PureComponent<Props, State> {

@@ -3,8 +3,23 @@ import { connect } from 'react-redux';
 
 import styles from './style.css';
 
+export type Movie = {
+    budget: number,
+    genres: string[],
+    id: number,
+    overview: string,
+    poster_path: string,
+    release_date: string,
+    revenue: number,
+    runtime: string,
+    tagline: string,
+    title: string,
+    vote_average: number,
+    vote_count: number,
+};
+
 type Props = {
-  movies: any[],
+  movies: Movie[],
   match: any,
 };
 

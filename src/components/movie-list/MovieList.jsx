@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 import styles from './style.css';
 
+import type { Movie } from '../movie-details/MovieDetails';
+
 type Props = {
-  movies: any[],
+  movies: Movie[],
 };
 
 class MovieList extends React.PureComponent<Props> {
