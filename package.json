@@ -28,8 +28,9 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=development node ./server",
-    "start:dev": "webpack-dev-server --config ./webpack/webpack.config.client.js --mode development --open",
     "build": "cross-env NODE_ENV=production webpack --config ./webpack",
+    "build:flow": "babel src/ -d lib/",
+    "flow": "flow",
     "test": "./node_modules/.bin/jest --coverage",
     "lint": "eslint ./src --ext .jsx --ext .js --fix"
   },
@@ -40,6 +41,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "cross-env": "^5.2.0",
@@ -53,6 +55,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.10.0",
     "extract-text-webpack-plugin": "^3.0.2",
+    "flow-bin": "^0.75.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",

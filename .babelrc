@@ -2,6 +2,7 @@
     "presets": [
         "react",
         "stage-3",
-        "es2015"
+        "es2015",
+        "flow"
      ]
 }
